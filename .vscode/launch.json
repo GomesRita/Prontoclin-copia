@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SpringProntoClinApplication<SpringProntoClin>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.application.SpringProntoClin.SpringProntoClinApplication",
+            "projectName": "SpringProntoClin",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

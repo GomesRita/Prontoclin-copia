@@ -1,0 +1,27 @@
+# Etapa 1: Construir o JAR usando uma imagem Maven + JDK 17
+FROM maven:3.8.7-eclipse-temurin-17 AS build
+
+# Defina o diretório de trabalho no contêiner
+WORKDIR /app
+
+# Copie o arquivo pom.xml e o diretório src para dentro do contêiner
+COPY ../SpringProntoClin/pom.xml /app/
+COPY ../SpringProntoClin/src /app/src/
+
+# Baixar as dependências e compilar o projeto
+RUN mvn clean package -DskipTests
+
+# Etapa 2: Criar a imagem final com JRE e o JAR
+FROM eclipse-temurin:17-jre
+
+# Defina o diretório de trabalho no contêiner
+WORKDIR /app
+
+# Copiar o arquivo JAR gerado da etapa de build para o contêiner
+COPY --from=build /app/target/SpringProntoClin-0.0.1-SNAPSHOT.jar /app/app.jar
+
+# Expor a porta que o Spring Boot vai rodar
+EXPOSE 8081
+
+# Comando de inicialização
+CMD ["java", "-jar", "/app/app.jar"]

@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+
+  cnprontoclin:
+    image: postgres:latest
+    container_name: cnprontoclin
+    environment:
+      POSTGRES_DB: dbprontoclin
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: prontoclin
+    ports:
+      - "5432:5432" 
+    networks:
+      - my-networks  
+    restart: always  
+
+  pgadminprontoclin:
+    image: dpage/pgadmin4
+    container_name: pgadminprontoclin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: prontoclin@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: postgres 
+
+    ports:
+      - "15432:80"  
+    networks:
+      - my-networks 
+    restart: always
+
+  springboot-app:
+    build:
+      context: .  
+      dockerfile: ./SpringProntoClin/dockerfile
+    container_name: springprontoclin
+    ports:
+      - "8081:8081"  # Mapeia a porta 8080 no host para a porta 8080 no container
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://cnprontoclin:5432/dbprontoclin  # URL de conexão com o banco
+      SPRING_DATASOURCE_USERNAME: prontoclin
+      SPRING_DATASOURCE_PASSWORD: postgres 
+    networks:
+      - my-networks 
+    depends_on:
+      - cnprontoclin
+    restart: always
+    
+  react-app:
+    build:
+      context: .
+      dockerfile: ./ReactProntoClin/prontoclin/dockerfile
+    container_name: reactprontoclin
+    ports:
+      - "3000:3000"
+    networks:
+      - my-networks
+    restart: always
+    volumes:
+      - ./ReactProntoClin/prontoclin/nginx.conf:/etc/nginx/nginx.conf 
+
+
+networks:
+  my-networks:
+    driver: bridge 
