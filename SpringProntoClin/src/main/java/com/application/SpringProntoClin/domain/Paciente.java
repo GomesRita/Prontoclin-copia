@@ -4,6 +4,7 @@ package com.application.SpringProntoClin.domain;
 import com.application.SpringProntoClin.DTO.RequestPaciente;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.envers.Audited;
 
 import java.util.Date;
 
@@ -11,6 +12,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Audited
 @Entity(name = "paciente")
 @Table(name = "paciente")
 @PrimaryKeyJoinColumn(name="iduser")

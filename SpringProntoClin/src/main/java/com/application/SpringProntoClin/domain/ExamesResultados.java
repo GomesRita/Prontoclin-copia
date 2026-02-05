@@ -2,6 +2,7 @@ package com.application.SpringProntoClin.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.envers.Audited;
 
 import java.util.Date;
 
@@ -10,6 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "idexameresultado")
+@Audited
 @Entity (name = "examesresultados")
 @Table(name = "examesresultados")
 public class ExamesResultados {

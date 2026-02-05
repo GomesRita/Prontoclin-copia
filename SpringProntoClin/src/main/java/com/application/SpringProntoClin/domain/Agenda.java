@@ -3,6 +3,7 @@ package com.application.SpringProntoClin.domain;
 import com.application.SpringProntoClin.DTO.RequestAgenda;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.envers.Audited;
 
 import java.util.Date;
 
@@ -10,6 +11,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Audited
 @Entity(name = "agenda")
 @Table(name = "agenda")
 public class Agenda{

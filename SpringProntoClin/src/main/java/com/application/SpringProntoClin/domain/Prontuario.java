@@ -3,6 +3,7 @@ package com.application.SpringProntoClin.domain;
 import com.application.SpringProntoClin.DTO.RequestProntuario;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.envers.Audited;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -12,6 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "idProntuario")
+@Audited
 @Entity (name = "prontuario")
 @Table (name = "prontuario")
 public class Prontuario {
