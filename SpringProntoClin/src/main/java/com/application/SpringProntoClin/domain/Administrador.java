@@ -3,11 +3,13 @@ package com.application.SpringProntoClin.domain;
 import com.application.SpringProntoClin.DTO.RequestAdministrador;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.envers.Audited;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Audited
 @Entity(name = "administrador")
 @Table(name = "administrador")
 @PrimaryKeyJoinColumn(name="iduser")

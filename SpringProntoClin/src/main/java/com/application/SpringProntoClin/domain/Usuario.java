@@ -3,6 +3,7 @@ package com.application.SpringProntoClin.domain;
 import com.application.SpringProntoClin.enums.UsuarioRole;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.envers.Audited;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +16,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Audited
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario  implements Serializable, UserDetails {

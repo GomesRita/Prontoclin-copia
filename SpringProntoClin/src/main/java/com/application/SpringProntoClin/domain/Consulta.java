@@ -3,6 +3,7 @@ package com.application.SpringProntoClin.domain;
 import com.application.SpringProntoClin.DTO.RequestConsulta;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.envers.Audited;
 
 import java.util.Date;
 
@@ -11,6 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "idconsulta")
+@Audited
 @Entity (name = "consulta")
 @Table (name = "consulta")
 public class Consulta {
